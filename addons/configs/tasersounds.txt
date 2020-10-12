@@ -1,0 +1,12 @@
+"sound"
+{
+	"1"
+	{
+		"path" "death/death1.mp3"
+	}
+	"2"
+	{
+		"path" "death/death2.mp3"
+	}
+
+}
