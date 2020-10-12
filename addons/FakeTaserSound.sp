@@ -120,7 +120,7 @@ public Action OnTakeDamage (int victim, int &attacker, int &inflictor, float &da
 			//ForcePlayerSuicide(victim);
 			SetEntProp(victim, Prop_Send, "m_ArmorValue", 0);
 			SetEntityHealth(victim, 1);
-			SDKHooks_TakeDamage(victim, attacker, attacker, damage, damagetype, _, damageForce , damagePosition)
+			SDKHooks_TakeDamage(victim, attacker, attacker, damage, damagetype, _, damageForce , damagePosition);
 			CreateDeathEvent(victim, attacker);
 			PlayTaserSound(victim);
 			return Plugin_Handled;
