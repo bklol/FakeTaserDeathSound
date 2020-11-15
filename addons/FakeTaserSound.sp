@@ -73,7 +73,7 @@ public void LoadSounds()
 	iSound = 0;
 	
 	char szPath[PLATFORM_MAX_PATH];
-	BuildPath(Path_SM, szPath,PLATFORM_MAX_PATH, "configs/sounds.txt");
+	BuildPath(Path_SM, szPath,PLATFORM_MAX_PATH, "configs/tasersounds.txt");
 	if (!FileExists(szPath))
 		SetFailState("Couldn't find file: %s", szPath);
 	
