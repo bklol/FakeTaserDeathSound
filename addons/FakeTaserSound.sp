@@ -73,7 +73,7 @@ public void LoadSounds()
 	iSound = 0;
 	
 	char szPath[PLATFORM_MAX_PATH];
-	BuildPath(Path_SM, szPath,PLATFORM_MAX_PATH, "configs/tasersounds.txt");
+	BuildPath(Path_SM, szPath,PLATFORM_MAX_PATH, "configs/sounds.txt");
 	if (!FileExists(szPath))
 		SetFailState("Couldn't find file: %s", szPath);
 	
@@ -103,7 +103,8 @@ public Action OnTakeDamage (int victim, int &attacker, int &inflictor, float &da
 		return Plugin_Continue;
 	}
 	char sWeapon[64];
-	GetEdictClassname(weapon, sWeapon, sizeof(sWeapon));
+	if(!GetEdictClassname(weapon, sWeapon, sizeof(sWeapon)))
+		return Plugin_Continue;
 	if(StrEqual(sWeapon,"weapon_taser"))
 	{	
 		if(GetClientTeam(victim) == GetClientTeam(attacker) && !cankillteammate)
@@ -120,7 +121,7 @@ public Action OnTakeDamage (int victim, int &attacker, int &inflictor, float &da
 			//ForcePlayerSuicide(victim);
 			SetEntProp(victim, Prop_Send, "m_ArmorValue", 0);
 			SetEntityHealth(victim, 1);
-			SDKHooks_TakeDamage(victim, attacker, attacker, damage, damagetype, _, damageForce , damagePosition);
+			SDKHooks_TakeDamage(victim, attacker, attacker, damage, damagetype, _, damageForce , damagePosition)
 			CreateDeathEvent(victim, attacker);
 			PlayTaserSound(victim);
 			return Plugin_Handled;
