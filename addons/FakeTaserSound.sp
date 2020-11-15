@@ -102,6 +102,8 @@ public Action OnTakeDamage (int victim, int &attacker, int &inflictor, float &da
 	{
 		return Plugin_Continue;
 	}
+	if(!IsValidEntity(weapon)|| weapon < 0)
+		return Plugin_Continue;
 	char sWeapon[64];
 	if(!GetEdictClassname(weapon, sWeapon, sizeof(sWeapon)))
 		return Plugin_Continue;
