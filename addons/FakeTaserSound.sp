@@ -11,7 +11,7 @@ bool IsTarget[MAXPLAYERS + 1];
 int iSound;
 
 char SoundPath[30][PLATFORM_MAX_PATH + 1];
-bool cankillteammate = true;
+bool cankillteammate = false;
 
 public Plugin myinfo =
 {
@@ -83,7 +83,6 @@ public void LoadSounds()
 	kConfig.GotoFirstSubKey();
 	
 	do {
-	
 		char Buffer[PLATFORM_MAX_PATH];
 		kConfig.GetString("path", Buffer, PLATFORM_MAX_PATH);
 		strcopy(SoundPath[iSound], PLATFORM_MAX_PATH, Buffer);
@@ -107,7 +106,7 @@ public Action OnTakeDamage (int victim, int &attacker, int &inflictor, float &da
 	char sWeapon[64];
 	if(!GetEdictClassname(weapon, sWeapon, sizeof(sWeapon)))
 		return Plugin_Continue;
-	if(StrEqual(sWeapon,"weapon_taser"))
+	if(StrContains(sWeapon,"taser") != -1)
 	{	
 		if(GetClientTeam(victim) == GetClientTeam(attacker) && !cankillteammate)
 			return Plugin_Continue;
